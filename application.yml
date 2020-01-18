@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    active: dev
+---    
+server:
+   port: 8889
+spring:
+   application:
+      name: feign-consumer-zuul
+   thymeleaf:
+      cache:false
+eureka:
+   client:
+      service-url:
+         defaultZone: http://localhost:9001/eureka/
+   instance:
+      prefer-ip-address: true
+zuul:
+      prefix: /uyov
+      strip-prefix: false
+      routes:
+         myzuul.serviceId: getBusinessInfoHystrix
+         myzuul.path: /api/**
+
+
+#feign:
+#   hystrix:
+#      enabled: true
+#ribbon:
+#   ReadTimeout: 60000
+#   ConnectTimeout: 60000
+#   eureka:
+#      enabled: true
